@@ -91,6 +91,11 @@ variable "vm_guest_os_language" {
   default = "en"
 }
 
+variable "vm_guest_arch" {
+  type    = string
+  default = "amd64"
+}
+
 variable "vm_guest_os_keyboard" {
   type    = string
   default = "us"

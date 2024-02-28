@@ -15,3 +15,9 @@ builds/*
 
 # For built boxes
 *.box
+
+**/*.ova
+**/*.ovf
+**/*.vmdk
+**/*.mf
+
