@@ -63,7 +63,8 @@ build {
 
     post-processor "shell-local" {
       # inline = ["ovftool --compress=9 --makeDeltaDisks builds/${var.vm_name}/packer-debian.vmx ${var.vm_name}.ova"]
-      inline = ["ovftool --compress=9 --acceptAllEulas --allowAllExtraConfig builds/ova/${var.vm_name}.ovf builds/ova/${var.vm_name}.ova "]
+      # inline = ["ovftool --compress=9 --acceptAllEulas --allowAllExtraConfig builds/ova/${var.vm_name}.ovf builds/ova/${var.vm_name}.ova "]
+      inline = ["ovftool --acceptAllEulas --allowAllExtraConfig builds/ova/${var.vm_name}.ovf builds/ova/${var.vm_name}.ova "]
     }
   }
 }

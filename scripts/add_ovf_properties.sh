@@ -3,9 +3,15 @@
 
 if [[ ! -z ${VM_NAME} ]]
 then 
-	pwd
-	ls -la ../builds/ova/${VM_NAME}.ovf
-	sed -i "/    <\/VirtualHardwareSection>/ r properties.xml" ../builds/ova/${VM_NAME}.ovf
+	#sed -i "/    <\/VirtualHardwareSection>/ r properties.xml" ../builds/ova/${VM_NAME}.ovf
+	rm -f ../builds/ova/${VM_NAME}.ovf
+
+	cp -f default.ovf.template ../builds/ova/${VM_NAME}.ovf
+
+	sed  -i \
+	     -e 's/{{VM_NAME}}/'${VM_NAME}'/' \
+	     ../builds/ova/${VM_NAME}.ovf
+
 	rm -f  ../builds/ova/${VM_NAME}.mf
 	cd ../builds/ova/
 	#Creating mf file with updated ovf file
