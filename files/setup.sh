@@ -29,7 +29,7 @@ else
     DNS_SERVER_PROPERTY=$(vmtoolsd --cmd "info-get guestinfo.ovfEnv" | grep "guestinfo.dns")
     DNS_DOMAIN_PROPERTY=$(vmtoolsd --cmd "info-get guestinfo.ovfEnv" | grep "guestinfo.domain")
     ROOT_PASSWORD_PROPERTY=$(vmtoolsd --cmd "info-get guestinfo.ovfEnv" | grep "guestinfo.root_password")
-    API_KEY=$(vmtoolsd --cmd "info-get guestinfo.ovfEnv" | grep "guestinfo.api_key")
+    API_KEY_PROPERTY=$(vmtoolsd --cmd "info-get guestinfo.ovfEnv" | grep "guestinfo.api_key")
 
     ##################################
     ### No User Input, assume DHCP ###
@@ -93,7 +93,7 @@ __CUSTOMIZE_OS__
 
     # Ensure we don't run customization again
     touch /root/ran_customization
-    API_KEY=$(vmtoolsd --cmd "info-get guestinfo.ovfEnv" | grep "guestinfo.api_key")
+    API_KEY=$(echo "${API_KEY_PROPERTY}" | awk -F 'oe:value="' '{print $2}' | awk -F '"' '{print $1}')
     if [[ ! -z ${API_KEY} && -f  /etc/telegraf/telegraf.conf ]]
     then
 	    sed  -i -e 's/{{API_KEY}}/'${API_KEY}'/'  /etc/telegraf/telegraf.conf
